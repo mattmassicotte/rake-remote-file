@@ -4,14 +4,13 @@ Gem::Specification.new do |spec|
   spec.name          = "rake-remote-file"
   spec.version       = RakeRemoteFile::VERSION
   spec.authors       = ["Matt Massicotte"]
-  spec.email         = ["85322+mattmassicotte@users.noreply.github.com"]
 
   spec.summary       = "Rake DSL extensions for managing a file at a remote location"
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/mattmassicotte/rake-remote-file"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -29,4 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rake"
   spec.add_runtime_dependency "mime-types"
   spec.add_runtime_dependency "aws-sdk-s3"
+  
+  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "mime-types"
 end
