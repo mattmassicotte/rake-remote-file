@@ -4,21 +4,26 @@ require 'mime-types'
 module RakeRemoteFile
   class Task < Rake::FileTask
     attr_accessor :source_file
-    
+
+    def initialize(task_name, app)
+      @s3 = Aws::S3::Resource.new()
+      super(task_name, app)
+    end
+
     def needed?
       @application.options.build_all || out_of_date?(timestamp)
     end
-    
+
     def timestamp
       s3_object.last_modified
     rescue
+      # if we cannot read last_modified, assume the file
+      # is extremely old
       Rake::EARLY
     end
-    
+
     def s3_object
-      s3 = Aws::S3::Resource.new()
-      
-      s3.bucket(bucket_name).object(remote_path)
+      @s3.bucket(bucket_name).object(remote_path)
     end
     
     def bucket_name
@@ -41,7 +46,6 @@ module RakeRemoteFile
     def upload(options={})
       options[:content_type] ||= mime_type
       
-      puts("actually uploading")
       s3_object.upload_file(source_file, options)
     end
   end

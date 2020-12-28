@@ -2,6 +2,12 @@ require 'test_helper'
 
 class TaskTest < Minitest::Test
 
+  def setup
+    ENV['AWS_REGION'] = 'us-east-1'
+    ENV['AWS_ACCESS_KEY_ID'] = 'key'
+    ENV['AWS_SECRET_ACCESS_KEY'] = 'secret'
+  end
+
   def test_s3_url_parse
     url = "https://s3.amazonaws.com/my_bucket/a/file/path"
     task = RakeRemoteFile::Task.new(url, Rake.application)
