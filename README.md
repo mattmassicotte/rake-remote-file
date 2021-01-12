@@ -1,8 +1,7 @@
-# Rake::Remote::File
+# rake-remote-file
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rake/remote/file`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a simple gem that adds capabilities to rake to emulate the `file` task, but for files that reside on a remote server. Currently.
+S3 is supported.
 
 ## Installation
 
@@ -22,7 +21,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This DSL extension creates two tasks. First, a `file "/path/to/local/file"`, and then a remote task named `https://s3.amazonaws.com/#{bucket}/#{key}`
+which behaves functionally like a `file` task.
+
+    remote_file '/path/to/local/file', 'https://s3.amazonaws.com/#{bucket}/#{key}'
 
 ## Development
 
@@ -32,9 +34,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rake-remote-file. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rake-remote-file/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rake-remote-file. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/mattmassicotte/rake-remote-file/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## Code of Conduct
 
-Everyone interacting in the Rake::Remote::File project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rake-remote-file/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the rake-remote-file project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/mattmassicotte/rake-remote-file/blob/master/CODE_OF_CONDUCT.md).
